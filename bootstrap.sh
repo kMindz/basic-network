@@ -133,7 +133,7 @@ binaryDownload() {
 }
 
 binariesInstall() {
-  echo "===> Downloading version ${FABRIC_TAG} platform specific fabric binaries"
+  echo "===> Downloading version 1.4.0 platform specific fabric binaries"
   binaryDownload ${BINARY_FILE} https://nexus.hyperledger.org/content/repositories/releases/org/hyperledger/fabric/hyperledger-fabric/${ARCH}-${VERSION}/${BINARY_FILE}
   if [ $? -eq 22 ]; then
      echo
