@@ -68,7 +68,7 @@ samplesInstall() {
    # echo "===> Checking out v${VERSION} of hyperledger/fabric-samples"
    # cd fabric-samples && git checkout v${VERSION}
   #else
-    echo "===> Cloning basic-network v${VERSION}"
+    echo "===> Cloning basic-network"
     git clone     git clone https://github.com/kMindz/basic-network.git && cd basic-network
 #  fi
 }
