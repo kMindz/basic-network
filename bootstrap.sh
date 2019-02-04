@@ -10,7 +10,7 @@ export VERSION=1.4.0
 # if ca version not passed in, default to latest released version
 export CA_VERSION=$VERSION
 # current version of thirdparty images (couchdb, kafka and zookeeper) released
-export THIRDPARTY_IMAGE_VERSION=0.4.13
+export THIRDPARTY_IMAGE_VERSION=0.4.14
 export ARCH=$(echo "$(uname -s|tr '[:upper:]' '[:lower:]'|sed 's/mingw64_nt.*/windows/')-$(uname -m | sed 's/x86_64/amd64/g')")
 export MARCH=$(uname -m)
 
@@ -23,8 +23,8 @@ printHelp() {
   echo "-s : bypass fabric-samples repo clone"
   echo "-b : bypass download of platform-specific binaries"
   echo
-  echo "e.g. bootstrap.sh 1.3.0 -s"
-  echo "would download docker images and binaries for version 1.3.0"
+  echo "e.g. bootstrap.sh 1.4.0 -s"
+  echo "would download docker images and binaries for version 1.4.0"
 }
 
 dockerFabricPull() {
@@ -58,18 +58,18 @@ dockerCaPull() {
 samplesInstall() {
   # clone (if needed) hyperledger/fabric-samples and checkout corresponding
   # version to the binaries and docker images to be downloaded
-  #if [ -d first-network ]; then
+ # if [ -d first-network ]; then
     # if we are in the fabric-samples repo, checkout corresponding version
   #  echo "===> Checking out v${VERSION} of hyperledger/fabric-samples"
-  #  git checkout v${VERSION}
+   # git checkout v${VERSION}
   #elif [ -d fabric-samples ]; then
     # if fabric-samples repo already cloned and in current directory,
     # cd fabric-samples and checkout corresponding version
-  #  echo "===> Checking out v${VERSION} of hyperledger/fabric-samples"
-  #  cd fabric-samples && git checkout v${VERSION}
+   # echo "===> Checking out v${VERSION} of hyperledger/fabric-samples"
+   # cd fabric-samples && git checkout v${VERSION}
   #else
-    echo "===> Cloning kmindz/basic-network repo and checkout"
-    git clone https://github.com/kMindz/basic-network.git && cd basic-network
+    echo "===> Cloning basic-network v${VERSION}"
+    git clone     git clone https://github.com/kMindz/basic-network.git && cd basic-network
 #  fi
 }
 
@@ -133,7 +133,7 @@ binaryDownload() {
 }
 
 binariesInstall() {
-  echo "===> Downloading version 1.4.0 platform specific fabric binaries"
+  echo "===> Downloading version ${FABRIC_TAG} platform specific fabric binaries"
   binaryDownload ${BINARY_FILE} https://nexus.hyperledger.org/content/repositories/releases/org/hyperledger/fabric/hyperledger-fabric/${ARCH}-${VERSION}/${BINARY_FILE}
   if [ $? -eq 22 ]; then
      echo
@@ -176,11 +176,11 @@ BINARIES=true
 
 # Parse commandline args pull out
 # version and/or ca-version strings first
-if [ ! -z $1 -a ${1:0:1} != "-" ]; then
+if [ ! -z "$1" -a ${1:0:1} != "-" ]; then
   VERSION=$1;shift
-  if [ ! -z $1  -a ${1:0:1} != "-" ]; then
+  if [ ! -z "$1"  -a ${1:0:1} != "-" ]; then
     CA_VERSION=$1;shift
-    if [ ! -z $1  -a ${1:0:1} != "-" ]; then
+    if [ ! -z "$1"  -a ${1:0:1} != "-" ]; then
       THIRDPARTY_IMAGE_VERSION=$1;shift
     fi
   fi
