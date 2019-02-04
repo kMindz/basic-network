@@ -69,7 +69,7 @@ samplesInstall() {
    # cd fabric-samples && git checkout v${VERSION}
   #else
     echo "===> Cloning basic-network"
-    git clone     git clone https://github.com/kMindz/basic-network.git && cd basic-network
+    git clone https://github.com/kMindz/basic-network.git && cd basic-network
 #  fi
 }
 
