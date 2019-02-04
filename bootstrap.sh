@@ -13,8 +13,6 @@ export CA_VERSION=$VERSION
 export THIRDPARTY_IMAGE_VERSION=0.4.14
 export ARCH=$(echo "$(uname -s|tr '[:upper:]' '[:lower:]'|sed 's/mingw64_nt.*/windows/')-$(uname -m | sed 's/x86_64/amd64/g')")
 export MARCH=$(uname -m)
-echo "===> Cloning basic-network"
-git clone https://github.com/kMindz/basic-network.git && cd basic-network
 
 printHelp() {
   echo "Usage: bootstrap.sh [version [ca_version [thirdparty_version]]] [options]"
@@ -57,23 +55,23 @@ dockerCaPull() {
       docker tag hyperledger/fabric-ca:$CA_TAG hyperledger/fabric-ca
 }
 
-#samplesInstall() {
+samplesInstall() {
   # clone (if needed) hyperledger/fabric-samples and checkout corresponding
   # version to the binaries and docker images to be downloaded
- # if [ -d first-network ]; then
+  #if [ -d first-network ]; then
     # if we are in the fabric-samples repo, checkout corresponding version
-  #  echo "===> Checking out v${VERSION} of hyperledger/fabric-samples"
+    #echo "===> Checking out v${VERSION} of hyperledger/fabric-samples"
    # git checkout v${VERSION}
   #elif [ -d fabric-samples ]; then
     # if fabric-samples repo already cloned and in current directory,
     # cd fabric-samples and checkout corresponding version
-   # echo "===> Checking out v${VERSION} of hyperledger/fabric-samples"
-   # cd fabric-samples && git checkout v${VERSION}
+  #  echo "===> Checking out v${VERSION} of hyperledger/fabric-samples"
+  #  cd fabric-samples && git checkout v${VERSION}
   #else
- #   echo "===> Cloning basic-network"
-#    git clone https://github.com/kMindz/basic-network.git && cd basic-network
-#  fi
-#}
+   # echo "===> Cloning hyperledger/fabric-samples repo and checkout v${VERSION}"
+    git clone https://github.com/kMindz/basic-network.git && cd basic-network
+  #fi
+}
 
 # Incrementally downloads the .tar.gz file locally first, only decompressing it
 # after the download is complete. This is slower than binaryDownload() but
