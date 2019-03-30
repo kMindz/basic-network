@@ -172,7 +172,7 @@ dockerInstall() {
 }
 
 DOCKER=true
-SAMPLES=true
+SAMPLES=false
 BINARIES=true
 
 # Parse commandline args pull out
@@ -218,7 +218,7 @@ while getopts "h?dsb" opt; do
   esac
 done
 
-if [ "$SAMPLES" == "true" ]; then
+if [ "$SAMPLES" == "false" ]; then
   echo
   echo "Installing hyperledger/fabric-samples repo"
   echo
