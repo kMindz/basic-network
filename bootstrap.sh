@@ -55,7 +55,7 @@ dockerCaPull() {
       docker tag hyperledger/fabric-ca:$CA_TAG hyperledger/fabric-ca
 }
 
-samplesInstall() {
+#samplesInstall() {
   # clone (if needed) hyperledger/fabric-samples and checkout corresponding
   # version to the binaries and docker images to be downloaded
   #if [ -d first-network ]; then
@@ -69,9 +69,9 @@ samplesInstall() {
   #  cd fabric-samples && git checkout v${VERSION}
   #else
    # echo "===> Cloning hyperledger/fabric-samples repo and checkout v${VERSION}"
-    git clone https://github.com/kMindz/basic-network.git && cd basic-network
+    #git clone https://github.com/kMindz/basic-network.git && cd basic-network
   #fi
-}
+#}
 
 
 # Incrementally downloads the .tar.gz file locally first, only decompressing it
